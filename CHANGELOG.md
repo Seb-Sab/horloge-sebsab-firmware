@@ -14,6 +14,12 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v69 — stable (racine + stable/ + beta/) — 2026-08-29
+
+Affiche la version firmware et l'ID de puce dans le portail de
+configuration de l'horloge. Changement d'UI mineur, publié directement
+en stable sur les trois emplacements, pas de phase beta.
+
 ## v68 — stable (racine + stable/ + beta/) — 2026-08-29
 
 Introduit la configuration à distance (transition, bornes LDR, canal
