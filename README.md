@@ -43,7 +43,12 @@ publication **beta uniquement** ne touche que `beta/`.
      nécessite pas de phase beta) : écraser `firmware.bin` **et**
      `stable/firmware.bin` (même binaire aux deux emplacements), mettre à
      jour `version.txt` **et** `stable/version.txt` avec le même numéro.
-4. Commit + push de **ce dossier uniquement** vers le dépôt public. Le code
+4. Ajouter une ligne dans `CHANGELOG.md` (canal, date, courte description)
+   — c'est ce qui permet de savoir plus tard si un numéro de version donné
+   est passé par une phase beta, l'entier seul ne le dit pas. Une
+   promotion beta → stable sans changement de code ajoute une seconde
+   ligne pour le même numéro.
+5. Commit + push de **ce dossier uniquement** vers le dépôt public. Le code
    source ne quitte jamais le dépôt privé.
 
 Les horloges sur le canal concerné détecteront la mise à jour au prochain
