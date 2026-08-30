@@ -14,6 +14,14 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v70 — stable (racine + stable/ + beta/) — 2026-08-30
+
+Vérifie les mises à jour toutes les ~3h au lieu d'1x/jour (plus de
+fenêtres de tentatives indépendantes face à un réseau instable), et
+remonte au dashboard fleet un échec de simple vérification de version
+(auparavant invisible). Ne change pas le mécanisme de téléchargement
+lui-même. Publié directement en stable, pas de phase beta.
+
 ## v69 — stable (racine + stable/ + beta/) — 2026-08-29
 
 Affiche la version firmware et l'ID de puce dans le portail de
