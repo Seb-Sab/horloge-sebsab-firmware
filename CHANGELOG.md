@@ -14,6 +14,14 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v71 — stable (racine + stable/ + beta/) — 2026-08-30
+
+Corrige le clignotement de secours de la transition "Serpent (jeu)"
+quand aucun chemin auto-évitant n'est trouvable (grille trop remplie) :
+bascule sur la transition "Serpent" simple plutôt que d'afficher le
+résultat final instantanément. Publié directement en stable, pas de
+phase beta.
+
 ## v70 — stable (racine + stable/ + beta/) — 2026-08-30
 
 Vérifie les mises à jour toutes les ~3h au lieu d'1x/jour (plus de
