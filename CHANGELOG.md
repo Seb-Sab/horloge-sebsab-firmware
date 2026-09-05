@@ -14,6 +14,13 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v72 — stable (racine + stable/ + beta/) — 2026-09-05
+
+Ajoute le timestamp de dernière entrée en mode nuit au check-in de
+flotte, pour que le dashboard sache si une horloge est passée en mode
+nuit dans les dernières 24h (pas seulement son état instantané au
+dernier check-in). Publié directement en stable, pas de phase beta.
+
 ## v71 — stable (racine + stable/ + beta/) — 2026-08-30
 
 Corrige le clignotement de secours de la transition "Serpent (jeu)"
