@@ -14,6 +14,12 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v73 — stable (racine + stable/ + beta/) — 2026-09-06
+
+Persiste en EEPROM le timestamp d'entrée en mode nuit (ajouté en v72,
+qui était en RAM uniquement et se perdait à chaque redémarrage). Publié
+directement en stable, pas de phase beta.
+
 ## v72 — stable (racine + stable/ + beta/) — 2026-09-05
 
 Ajoute le timestamp de dernière entrée en mode nuit au check-in de
