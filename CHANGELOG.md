@@ -14,6 +14,18 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v81 — beta uniquement — 2026-09-19
+
+Corrige `exact=0` malgré des octets réellement transférés (61440
+confirmés écrits en flash sur l'échec précédent). Cause : HTTPClient::
+begin() ne garde jamais l'objet client passé en argument, il appelle
+client.clone() et travaille avec ce clone pour toute la connexion —
+WiFiClientSecure::clone() fait `new WiFiClientSecure(*this)`, codé en
+dur sur le type de base, donc même appelé sur CountingWiFiClientSecure
+(v77) il "tranchait" l'objet et produisait un client nu sans le
+compteur. Fix : clone() surchargé pour préserver la sous-classe. Publié
+en beta/ uniquement.
+
 ## v80 — beta uniquement — 2026-09-19
 
 Pur bump de version, aucun changement de code — publié pour qu'une
