@@ -14,6 +14,17 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v79 — beta uniquement — 2026-09-19
+
+Corrige la troncature silencieuse du message d'erreur OTA : deux échecs
+réels sur une horloge confirmée en v77 ont remonté `... @X/Yb` sans le
+`exact=...` ajouté en v77, alors que le code l'ajoutait bien. Cause
+probable : la chaîne de concaténations `String` (jusqu'à 7 allocations
+temporaires) peut échouer silencieusement sur un tas fragmenté juste
+après la fermeture d'une session TLS ratée — `String::concat()`
+abandonne sans erreur. Remplacé par un seul `snprintf` dans un buffer
+fixe (une seule allocation finale). Publié en beta/ uniquement.
+
 ## v78 — beta uniquement — 2026-09-19
 
 Pur bump de version, aucun changement de code — publié pour qu'une
