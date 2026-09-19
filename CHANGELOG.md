@@ -14,6 +14,16 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v85 — beta uniquement — 2026-09-19
+
+Le buffer TLS 16384 (v83) a échoué 3/3 fois avec "connection failed" à
+0 octet — pistes possibles : allocation ~16 Ko contiguë qui échoue sur
+un tas fragmenté, ou tout autre cause. Ajoute au diagnostic
+lastOtaPreConnectHeap/MaxBlock (ESP.getFreeHeap()/getMaxFreeBlockSize()),
+capturés juste avant l'appel de connexion, pour objectiver la cause
+avant de choisir la prochaine taille de buffer. Buffer TLS conservé à
+16384 pour ce test. Publié en beta/ uniquement.
+
 ## v84 — beta uniquement — 2026-09-19
 
 Pur bump de version, aucun changement de code — publié pour qu'une
