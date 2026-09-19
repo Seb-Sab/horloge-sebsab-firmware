@@ -14,6 +14,15 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v87 — beta uniquement — 2026-09-19
+
+Teste un buffer de réception TLS de 8192 (au lieu de 16384). Le
+diagnostic ajouté en v85 a confirmé que 16384 échoue par fragmentation
+mémoire (heap=23272 total mais maxblk=15688, insuffisant pour
+l'allocation ~16,7 Ko requise) — 8192 reste le double de l'original
+4096 tout en laissant une marge confortable sous les 15688 observés.
+Publié en beta/ uniquement.
+
 ## v86 — beta uniquement — 2026-09-19
 
 Pur bump de version, aucun changement de code — publié pour qu'une
