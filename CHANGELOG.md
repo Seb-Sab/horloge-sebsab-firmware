@@ -14,6 +14,23 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.0.0 — beta uniquement — 2026-09-19 — NOUVELLE NUMÉROTATION x.y.z
+
+À partir d'ici, numérotation MAJOR.MINOR.PATCH au lieu d'un entier
+plat : **PATCH=0 signifie "version stable"**, PATCH≥1 signifie "N-ième
+itération beta depuis la dernière stable". MINOR n'avance qu'au moment
+de promouvoir une beta validée en stable (PATCH revient à 0). MAJOR
+réservé aux changements d'architecture majeurs. Démarré à 103 (juste
+après le dernier entier plat publié, v102) pour qu'une horloge encore
+sur l'ancien schéma détecte correctement cette version comme plus
+récente (elle compare de simples entiers, "103.0.0".toInt() = 103) sans
+aucune modification de son côté. version.txt contient désormais la
+chaîne complète "x.y.z", plus un entier seul. Test de la mécanique
+elle-même avant toute promotion : transition ancien->nouveau schéma,
+stockage EEPROM (nouvelles adresses 192/193 pour minor/patch), et
+intégration dashboard (fw_version stocké en texte, migration Supabase
+migration_009_fw_version_text.sql).
+
 ## v102 — beta uniquement — 2026-09-19
 
 Pur bump de version, aucun changement de code — publié pour qu'une
