@@ -14,6 +14,13 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v75 — stable (racine + stable/ + beta/) — 2026-09-19
+
+Pur bump de version, aucun changement de code — publié uniquement pour
+qu'une horloge fraîchement flashée en USB sur v74 ait une cible réelle
+vers laquelle tenter un OTA, et exerce ainsi pour de vrai le diagnostic
+de position (octets) ajouté en v74.
+
 ## v74 — stable (racine + stable/ + beta/) — 2026-09-19
 
 Ajoute au check-in de flotte la position atteinte (octets reçus/attendus)
