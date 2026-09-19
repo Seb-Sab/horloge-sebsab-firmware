@@ -14,6 +14,19 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.0 — STABLE — 2026-09-19 — promotion en stable (root + stable + beta)
+
+Promotion de la 103.0.1 (validée : 3 OTA réussies d'affilée via le
+mécanisme resumable v101, transition + nouvelle logique de comparaison
+x.y.z toutes deux confirmées en direct). Convention respectée : MINOR
++1, PATCH remis à 0 (103.0.1 -> 103.1.0) pour marquer le passage en
+stable, aucun changement de code au-delà du numéro de version. Publié
+sur les trois canaux (root/, stable/, beta/) puisqu'il n'y a plus de
+divergence active entre beta et stable à ce stade. Fin de la règle
+"beta uniquement" qui protégeait la flotte pendant cette investigation
+OTA — la flotte peut de nouveau recevoir des mises à jour stables
+normalement.
+
 ## 103.0.1 — beta uniquement — 2026-09-19 — bump pur, aucun changement de code
 
 Cible de test pour valider la NOUVELLE logique de comparaison par tuple
