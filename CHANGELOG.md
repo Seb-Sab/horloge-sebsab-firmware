@@ -14,6 +14,18 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v83 — beta uniquement — 2026-09-19
+
+Teste la piste la plus solide à ce jour : remonte le buffer de réception
+TLS de 4096 à 16384 octets (la taille maximale d'un enregistrement TLS,
+et le "minimum sûr" que les auteurs de la librairie BearSSL utilisent
+eux-mêmes par défaut). Motivé par deux échecs indépendants s'arrêtant
+au même octet exact (16355, à 29 octets de 16384) sur v81/v82. IMPORTANT :
+comme tout changement du mécanisme de téléchargement OTA lui-même, doit
+être flashé en USB avant qu'un test OTA ne soit valide (l'horloge qui
+tente le téléchargement exécute son firmware ACTUEL pendant la
+tentative, pas la cible visée). Publié en beta/ uniquement.
+
 ## v82 — beta uniquement — 2026-09-19
 
 Pur bump de version, aucun changement de code — publié pour qu'une
