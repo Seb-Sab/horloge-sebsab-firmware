@@ -14,6 +14,17 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v99 — beta uniquement — 2026-09-19
+
+Ajoute la mesure du temps passé dans Update.write() (cumulé + durée max
+d'un appel) au diagnostic. Motivé par un vrai pattern observé en direct
+sur cette session : la plupart des "Stream Read Timeout" se regroupent
+entre 15400 et 15460 octets, proche d'une fenêtre de congestion TCP
+initiale typique. Hypothèse à confirmer : l'effacement/écriture flash
+déclenché par Update.write() tous les 4096 octets pourrait tourner
+interruptions désactivées (comportement SDK ESP8266) et priver la pile
+WiFi/TCP assez longtemps pour empêcher l'accusé de réception à temps.
+
 ## v98 — beta uniquement — 2026-09-19
 
 Pur bump de version, aucun changement de code — publié pour qu'une
