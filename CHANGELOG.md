@@ -14,6 +14,13 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.0.1 — beta uniquement — 2026-09-19 — bump pur, aucun changement de code
+
+Cible de test pour valider la NOUVELLE logique de comparaison par tuple
+(103.0.0 → 103.0.0 avait seulement validé le parsing `toInt()` de
+l'ANCIEN firmware ; ce bump teste le code de fetch/comparaison x.y.z
+réécrit lui-même, une fois qu'une horloge tourne déjà en 103.0.0).
+
 ## 103.0.0 — beta uniquement — 2026-09-19 — NOUVELLE NUMÉROTATION x.y.z
 
 À partir d'ici, numérotation MAJOR.MINOR.PATCH au lieu d'un entier
