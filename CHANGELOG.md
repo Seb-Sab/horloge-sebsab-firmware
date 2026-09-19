@@ -14,6 +14,16 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v95 — beta uniquement — 2026-09-19 — REPRISE DES PUBLICATIONS ICI
+
+Le canal beta revient à GitHub (racine + stable inchangés pendant tout
+ce temps) : le test Vercel (v90-94) n'a pas identifié le CDN GitHub/
+Fastly comme cause du blocage déterministe récurrent — nouveau point
+de blocage tout aussi déterministe sur Vercel, pas d'amélioration.
+Infra Vercel (firmware/, vercel.json, api/clocks.js) nettoyée côté
+dépôt firmware-releases fleet. Publications beta reprennent ici
+normalement à partir de cette version.
+
 ## v90 — beta uniquement — 2026-09-19 — DERNIÈRE VERSION PUBLIÉE ICI PENDANT LE TEST
 
 Route le canal beta vers l'infra Vercel/Supabase existante
