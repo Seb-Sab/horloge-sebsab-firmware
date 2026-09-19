@@ -14,6 +14,13 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v96 — beta uniquement — 2026-09-19
+
+Pur bump de version, aucun changement de code — publié pour qu'une
+horloge fraîchement flashée en USB sur v95 ait une cible OTA réelle,
+exerçant ainsi pour de vrai le diagnostic RSSI/canal WiFi ajouté en
+v94 (conservé dans v95) sur un vrai échec.
+
 ## v95 — beta uniquement — 2026-09-19 — REPRISE DES PUBLICATIONS ICI
 
 Le canal beta revient à GitHub (racine + stable inchangés pendant tout
