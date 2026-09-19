@@ -14,6 +14,20 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v74/v75 — rétrogradées en beta uniquement — 2026-09-19
+
+v74 et v75 avaient été publiées directement en stable (racine + stable/ +
+beta/, voir les deux entrées ci-dessous) au moment où elles ne
+contenaient qu'un ajout de diagnostic à faible risque. Une fois utilisées
+pour un vrai test OTA, elles se sont révélées un terrain de test actif
+pour le problème Stream Read Timeout non résolu (voir project_ota_update
+memory) — décision de l'utilisateur : ne pas exposer le reste de la
+flotte (canal stable) à des versions encore en cours d'investigation.
+`racine/` et `stable/` restaurés au binaire v73 (dernier état validé,
+commit `98250a2`) ; `beta/` conservé à v75. Toute nouvelle version tant
+que ce chantier est ouvert sera publiée en beta uniquement, jusqu'à
+décision conjointe de promotion en stable.
+
 ## v75 — stable (racine + stable/ + beta/) — 2026-09-19
 
 Pur bump de version, aucun changement de code — publié uniquement pour
