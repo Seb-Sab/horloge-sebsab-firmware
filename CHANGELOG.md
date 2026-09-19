@@ -14,6 +14,13 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v80 — beta uniquement — 2026-09-19
+
+Pur bump de version, aucun changement de code — publié pour qu'une
+horloge fraîchement flashée en USB sur v79 ait une cible OTA réelle,
+exerçant ainsi pour de vrai la correction de troncature du diagnostic
+ajoutée en v79.
+
 ## v79 — beta uniquement — 2026-09-19
 
 Corrige la troncature silencieuse du message d'erreur OTA : deux échecs
