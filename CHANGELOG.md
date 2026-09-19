@@ -14,6 +14,13 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v102 — beta uniquement — 2026-09-19
+
+Pur bump de version, aucun changement de code — publié pour qu'une
+horloge fraîchement flashée en USB sur v101 ait une cible OTA réelle,
+exerçant ainsi pour de vrai le téléchargement reprenable (HTTP Range)
+ajouté en v101 sur un vrai transfert.
+
 ## v101 — beta uniquement — 2026-09-19
 
 Changement de stratégie majeur : après avoir écarté quatre causes
