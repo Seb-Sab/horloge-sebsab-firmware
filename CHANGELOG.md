@@ -14,6 +14,12 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v78 — beta uniquement — 2026-09-19
+
+Pur bump de version, aucun changement de code — publié pour qu'une
+horloge fraîchement flashée en USB sur v77 ait une cible OTA réelle,
+exerçant ainsi pour de vrai le comptage exact d'octets ajouté en v77.
+
 ## v77 — beta uniquement — 2026-09-19
 
 Ajoute un comptage exact des octets reçus (`CountingWiFiClientSecure`,
