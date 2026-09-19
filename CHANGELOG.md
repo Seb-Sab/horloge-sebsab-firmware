@@ -14,6 +14,29 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v90 — beta uniquement — 2026-09-19 — DERNIÈRE VERSION PUBLIÉE ICI PENDANT LE TEST
+
+Route le canal beta vers l'infra Vercel/Supabase existante
+(clocksebsab-fleet.vercel.app/firmware/beta/) au lieu de
+raw.githubusercontent.com, pour tester si le CDN GitHub/Fastly est en
+cause dans les coupures persistantes (ni 4096, ni 16384, ni 8192
+n'ont déplacé le point de blocage récurrent à l'octet 16355). Stable
+reste inchangé sur GitHub. v90 est publiée ici comme d'habitude car
+l'horloge de test (v89) lit encore GitHub pour ce dernier saut — une
+fois v90 confirmée installée, les publications suivantes du canal beta
+se feront uniquement sur clocksebsab-fleet.vercel.app/firmware/beta/
+(voir ce dépôt), pas ici, tant que ce test est en cours.
+
+## v89 — beta uniquement — 2026-09-19
+
+Clôt la piste "buffer TLS trop petit" (v82-v88) : trois configurations
+différentes (4096, 16384, 8192) ont produit le même point de coupure
+exact (octet 16355) — le point de blocage ne bougeant pas avec la
+taille du buffer, ce n'en est vraisemblablement pas la cause. Retour à
+4096 (valeur d'origine). Tout l'outillage de diagnostic construit
+pendant cette investigation (comptage exact, heap/fragmentation) est
+conservé. Publié en beta/ uniquement.
+
 ## v88 — beta uniquement — 2026-09-19
 
 Pur bump de version, aucun changement de code — publié pour qu'une
