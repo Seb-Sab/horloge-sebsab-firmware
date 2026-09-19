@@ -14,6 +14,13 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v86 — beta uniquement — 2026-09-19
+
+Pur bump de version, aucun changement de code — publié pour qu'une
+horloge fraîchement flashée en USB sur v85 ait une cible OTA réelle,
+exerçant ainsi pour de vrai le diagnostic heap/fragmentation
+(heap=/maxblk=) ajouté en v85.
+
 ## v85 — beta uniquement — 2026-09-19
 
 Le buffer TLS 16384 (v83) a échoué 3/3 fois avec "connection failed" à
