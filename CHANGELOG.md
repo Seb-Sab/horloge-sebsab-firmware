@@ -14,6 +14,18 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v97 — beta uniquement — 2026-09-19
+
+Corrige un vrai crash trouvé en direct (session série + addr2line sur
+epc1) : Exception (28) LoadProhibitedCause, excvaddr=0x00000000, dans
+downloadAndFlashOta(). HTTPClient::getStreamPtr() peut renvoyer nullptr
+si la connexion se referme entre GET() et cet appel — jamais vérifié
+avant, provoquant un appel de méthode virtuelle sur pointeur null
+(lecture à l'adresse 0). Ajoute la vérification manquante. N'explique
+pas le Stream Read Timeout lui-même, mais élimine un vrai plantage
+silencieux (reboot sans aucun message d'erreur) rencontré pendant
+l'investigation.
+
 ## v96 — beta uniquement — 2026-09-19
 
 Pur bump de version, aucun changement de code — publié pour qu'une
