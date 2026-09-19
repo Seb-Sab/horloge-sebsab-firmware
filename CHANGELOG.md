@@ -14,6 +14,23 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v101 — beta uniquement — 2026-09-19
+
+Changement de stratégie majeur : après avoir écarté quatre causes
+possibles (buffer TLS, hébergement/CDN, lecture octet-par-octet,
+blocage flash pendant Update.write()) sans trouver la vraie cause du
+"Stream Read Timeout" récurrent, le téléchargement OTA devient
+reprenable au lieu de tout perdre à chaque coupure. GitHub supporte les
+requêtes HTTP Range (vérifié) : sur un timeout, rouvre une connexion
+avec `Range: bytes=<déjà reçu>-` et continue à écrire dans la même
+session Update, au lieu d'abandonner tout le téléchargement. Budget de
+10 minutes / 40 reprises max pour ne jamais bloquer indéfiniment. Les
+coupures se produisant presque toujours entre ~15 et ~50 Ko sur un
+fichier de ~530 Ko, quelques segments devraient statistiquement
+suffire à compléter le fichier. Ne résout pas la cause profonde
+(toujours inconnue) mais vise à rendre les mises à jour fiables malgré
+elle.
+
 ## v100 — beta uniquement — 2026-09-19
 
 Pur bump de version, aucun changement de code — publié pour qu'une
