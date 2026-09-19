@@ -14,6 +14,14 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v76 — beta uniquement — 2026-09-19
+
+Pur bump de version, aucun changement de code — l'horloge de test étant
+déjà passée en v75 via OTA, elle se considérait "à jour" par rapport au
+canal beta et ne redéclenchait plus l'écran de mise à jour au boot. v76
+lui redonne une cible pour continuer à exercer le diagnostic OTA. Publié
+en beta/ uniquement, racine et stable restent à v73.
+
 ## v74/v75 — rétrogradées en beta uniquement — 2026-09-19
 
 v74 et v75 avaient été publiées directement en stable (racine + stable/ +
