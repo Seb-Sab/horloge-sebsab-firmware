@@ -14,6 +14,17 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v74 — stable (racine + stable/ + beta/) — 2026-09-19
+
+Ajoute au check-in de flotte la position atteinte (octets reçus/attendus)
+au moment d'un échec OTA, en complément du message d'erreur seul. Sert à
+objectiver l'hypothèse "fenêtre d'exposition" derrière les échecs
+persistants Stream Read Timeout / connection lost (voir
+project_ota_update memory) — ne change rien au mécanisme de
+téléchargement lui-même, donc aucune amélioration de fiabilité attendue
+avant la prochaine version. Publié directement en stable, pas de phase
+beta.
+
 ## v73 — stable (racine + stable/ + beta/) — 2026-09-06
 
 Persiste en EEPROM le timestamp d'entrée en mode nuit (ajouté en v72,
