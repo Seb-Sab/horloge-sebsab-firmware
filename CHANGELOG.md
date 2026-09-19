@@ -14,6 +14,13 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v98 — beta uniquement — 2026-09-19
+
+Pur bump de version, aucun changement de code — publié pour qu'une
+horloge fraîchement flashée en USB sur v97 ait une cible OTA réelle,
+exerçant ainsi pour de vrai le correctif du crash getStreamPtr() ajouté
+en v97.
+
 ## v97 — beta uniquement — 2026-09-19
 
 Corrige un vrai crash trouvé en direct (session série + addr2line sur
