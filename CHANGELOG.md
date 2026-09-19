@@ -14,6 +14,16 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## v77 — beta uniquement — 2026-09-19
+
+Ajoute un comptage exact des octets reçus (`CountingWiFiClientSecure`,
+sous-classe de `WiFiClientSecure` qui compte dans `read()`), en
+complément de `lastOtaProgressBytes` (v74) qui s'est révélé arrondi au
+dernier bloc flash de 4096 octets confirmé écrit (voir
+`Updater::progress()`), pas la position réelle de coupure. Message
+d'erreur désormais du type
+`... @32768/533328b exact=35120`. Publié en beta/ uniquement.
+
 ## v76 — beta uniquement — 2026-09-19
 
 Pur bump de version, aucun changement de code — l'horloge de test étant
