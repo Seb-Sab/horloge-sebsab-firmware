@@ -14,6 +14,20 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.54 — beta uniquement — 2026-09-21 — verifie enfin la valeur de retour de Update.write()
+
+Symptome rapporte en direct : une mise a jour OTA se telechargeait
+completement (barre de progression/logs jusqu'au bout) mais semblait ne
+jamais s'appliquer -- au demarrage suivant, une nouvelle mise a jour etait
+retelechargee, en boucle. Cause trouvee en lisant le vrai code source
+d'Updater.cpp (framework) : `Update.write()` peut renvoyer MOINS d'octets
+que demande (echec silencieux d'effacement/ecriture flash cote framework,
+`_writeBuffer()`), mais sa valeur de retour n'etait jamais verifiee ici --
+`written` avancait sur la base des octets RECUS du reseau, pas des octets
+REELLEMENT ecrits en flash. Fix : ne compte desormais que les octets
+reellement ecrits, et retente ce segment (meme mecanisme de reprise que
+pour un echec reseau) si Update.write() en a ecrit moins que demande.
+
 ## 103.1.53 — beta uniquement — 2026-09-20 — module marées complet de bout en bout (affichage + double-tap physique)
 
 Lot consolidé couvrant 103.1.23 → 103.1.53 (une seule entrée, pas 31 —
