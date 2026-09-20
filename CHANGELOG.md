@@ -14,6 +14,14 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.5 — beta uniquement — 2026-09-20 — diagnostics /tide_sites
+
+103.1.4 toujours vide côté portail, cause inconnue (aucune des branches
+de handleTideSites() ne logguait, sauf l'échec HTTP non-200). Ajoute un
+log sur chaque chemin (WiFi non connecté, échec https.begin(), taille du
+corps reçu, nombre de ports trouvés) -- aucun changement de logique,
+uniquement pour localiser la cause réelle avant de corriger.
+
 ## 103.1.4 — beta uniquement — 2026-09-20 — /tide_sites sans ArduinoJson (103.1.3 insuffisant)
 
 103.1.3 (tampon 16384) toujours insuffisant en pratique -- confirmé en
