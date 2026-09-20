@@ -14,6 +14,22 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.18 — beta uniquement — 2026-09-20 — force cache:no-store sur /tide_sites
+
+103.1.17 a corrigé le timing des réessais, mais un nouveau test a
+montré 20/20 tentatives renvoyant un statut 200 (confirmé via l'onglet
+Réseau du navigateur) alors que le serveur confirmait avoir la liste
+en cache (log `6057/6057 octets` / `liste chargee`) — le menu
+déroulant restait pourtant vide en permanence. Hypothèse : le
+navigateur re-servait une réponse mise en cache tôt (le `[]` d'un
+essai avant que le fetch serveur n'ait abouti) sans jamais retaper
+réellement le réseau, malgré un 200 affiché à chaque "tentative".
+Fix côté client : `fetch('/tide_sites', {cache:'no-store'})`. Fix côté
+serveur en complément : en-tête `Cache-Control: no-store` explicite
+sur cette réponse. Ajoute aussi un `console.error()` dans le portail
+pour révéler la vraie exception si cette hypothèse s'avère fausse au
+prochain test.
+
 ## 103.1.17 — beta uniquement — 2026-09-20 — élargit la fenêtre de réessai du portail pour /tide_sites
 
 103.1.16 a corrigé le fetch réseau lui-même (confirmé en direct, deux
