@@ -14,6 +14,36 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.53 — beta uniquement — 2026-09-20 — module marées complet de bout en bout (affichage + double-tap physique)
+
+Lot consolidé couvrant 103.1.23 → 103.1.53 (une seule entrée, pas 31 —
+voir git log pour le détail commit par commit). Deux volets :
+
+**Affichage marées** (jauge LED + heure de prochaine marée) : fetch
+`fetchTideExtrema()` corrigé (synchro NTP déplacée avant l'appel, lecture
+bufferisée manuelle au lieu de `HTTPClient`/`ArduinoJson`, tampon BearSSL
+agrandi, buffers réseau libérés avant le parse JSON) ; jauge révélée ligne
+par ligne avec fondu (bas→haut si montante, haut→bas si descendante),
+scintillement de nuances de bleu sur les lignes immergées, heure affichée
+= prochaine marée pertinente à la direction (haute si montante, basse si
+descendante) colorée bleu/jaune, fondu retour à l'heure réelle en fin de
+séquence. Un bug de dépassement de pile (`playTransitionFade()` avec 4
+tableaux `NUM_LEDS` simultanés dans le contexte `webServer.on()`) corrigé
+au passage.
+
+**Déclenchement physique (ADXL345, double-tap)** : driver I2C écrit à la
+main (pas de librairie), sonde de présence au boot (deux adresses
+possibles), configuration du double-tap. Cause racine d'un long
+diagnostic de câblage : le silkscreen D3/D4 de cette carte physique ne
+correspond pas à la table de broches "d1" compilée par `platformio.ini`
+(GPIO réels 0/2, convention "d1_mini"/NodeMCU) — déterminé empiriquement
+par balayage GPIO. `THRESH_TAP` calibré à ~1.2g après plusieurs essais en
+direct ; cooldown logiciel porté à 9s (> durée de l'affichage) pour éviter
+un rebond mécanique pendant l'affichage qui redéclenchait aussitôt.
+
+Section "Marées" du portail masquée entièrement si le capteur ADXL345
+n'est pas détecté sur l'horloge (`adxlPresent` dans `/config`).
+
 ## 103.1.22 — beta uniquement — 2026-09-20 — accumulation directe dans tideSitesJson (évite les réallocations de body)
 
 103.1.21 a bien détecté l'échec cette fois (sa vérification a
