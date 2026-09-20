@@ -14,6 +14,22 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.20 — beta uniquement — 2026-09-20 — écriture manuelle sur le client TCP brut pour /tide_sites
+
+103.1.19 (découpage en morceaux de 512 octets avec yield() entre
+chacun) a été testé en direct : même symptôme exact,
+`SyntaxError: Unexpected end of JSON input` sur 20/20 tentatives. Le
+découpage n'a rien changé car `webServer.sendContent()` renvoie
+`void` — impossible de détecter un envoi partiel même avec cette API
+en petits morceaux. Fix : écriture manuelle directe sur
+`webServer.client()` (le `WiFiClient` brut), en-têtes HTTP construits
+à la main, corps envoyé via `client.write()` avec vérification
+explicite du nombre d'octets réellement écrits à chaque appel et
+reprise à la bonne position sinon — même principe déjà appliqué à la
+lecture réseau dans ce module, appliqué ici à l'écriture. Ajoute un
+log série du nombre d'octets réellement envoyés pour confirmer ou
+infirmer en direct.
+
 ## 103.1.19 — beta uniquement — 2026-09-20 — envoie /tide_sites en petits morceaux (yield entre chaque)
 
 Diagnostic définitif obtenu via le `console.error()` ajouté en
