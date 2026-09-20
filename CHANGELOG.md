@@ -14,6 +14,25 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.22 — beta uniquement — 2026-09-20 — accumulation directe dans tideSitesJson (évite les réallocations de body)
+
+103.1.21 a bien détecté l'échec cette fois (sa vérification a
+fonctionné), mais confirmé en direct sur 5 tentatives consécutives :
+la copie était tronquée de façon **variable** à chaque fois (5056,
+5033, 3520, 4032, 2496 octets sur 6057, jamais le même nombre) — pas
+un problème de capacité simple, puisque `tideSitesJson.reserve(6200)`
+était déjà appelé tout au début de `setup()`. Cause probable :
+`String::changeBuffer()` (code source du core ESP8266) n'arrondit qu'au
+multiple de 16 le plus proche de la taille demandée — pas de croissance
+exponentielle — donc chaque `concat()` sur la String locale `body` qui
+dépassait sa capacité courante déclenchait sa propre réallocation
+indépendante pendant la lecture (une douzaine au total pour ~6 Ko lus
+par blocs de 512 octets), chacune pouvant échouer selon l'état du tas
+à cet instant précis, ce qui explique la variabilité observée. Fix :
+accumulation directe dans `tideSitesJson` (déjà réservé), plus de
+variable `body` intermédiaire ni de copie finale — plus aucune
+réallocation nécessaire pendant la boucle de lecture.
+
 ## 103.1.21 — beta uniquement — 2026-09-20 — vérifie/réserve la copie de tideSitesJson (échec silencieux du tas)
 
 Le diagnostic ajouté en 103.1.20 ("Tide sites: envoye X/Y octets") a
