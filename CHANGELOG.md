@@ -14,6 +14,25 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.16 — beta uniquement — 2026-09-20 — contourne HTTPClient::getStreamPtr() + agrandit le buffer BearSSL RX
+
+Le diagnostic ajouté en 103.1.14 a enfin montré le mécanisme précis
+de l'échec `/tide_sites` : `HTTPClient::getStreamPtr()` (code source
+de la lib) fait `if(connected()) return _client.get(); return
+nullptr;`, et le log montrait `connected=0` juste après un `GET()`
+200 avec pourtant un `Content-Length` correctement lu (6057, identique
+à curl). `getStreamPtr()` renvoyait donc `nullptr`, et la boucle de
+lecture n'était **jamais exécutée** — pas un problème de timing ni de
+pile, juste ce garde-fou. Fix : lecture directe sur l'objet
+`BearSSL::WiFiClientSecure` local (déjà en scope) au lieu de passer
+par `getStreamPtr()`. Deuxième mode d'échec observé séparément
+(`connected=1` mais 0 octet reçu quand même après 15s) : agrandit le
+tampon de réception BearSSL de 1024 à 4096 octets pour cette fonction
+uniquement (hypothèse : la réponse ~6 Ko, la plus grosse reçue par
+cet ESP8266 hors OTA, dépasse la taille d'enregistrement TLS que le
+tampon précédent pouvait contenir) — les autres appels HTTPS du
+fichier (réponses bien plus petites) gardent leur tampon 1024.
+
 ## 103.1.15 — beta uniquement — 2026-09-20 — URGENT : revert CONT_STACKSIZE (cassait le boot)
 
 103.1.14's `CONT_STACKSIZE=8192` empêchait l'horloge de démarrer :
