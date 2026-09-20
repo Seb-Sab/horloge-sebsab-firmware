@@ -14,6 +14,23 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.19 — beta uniquement — 2026-09-20 — envoie /tide_sites en petits morceaux (yield entre chaque)
+
+Diagnostic définitif obtenu via le `console.error()` ajouté en
+103.1.18 : `SyntaxError: Failed to execute 'json' on 'Response':
+Unexpected end of JSON input` sur les 20/20 tentatives, malgré un
+statut 200 — la réponse arrivait **tronquée côté navigateur**, cette
+fois sur le trajet ESP→navigateur (pas ESP→Vercel). Cause trouvée dans
+le code source d'ESP8266WebServer : `send(code, type, String)` envoie
+tout le corps en un seul appel bloquant à `Stream::sendSize()` (voir
+`ESP8266WebServer-impl.h::sendContent()`), qui peut renvoyer moins
+d'octets que demandé après un timeout d'écriture — silencieusement
+pour l'appelant. Pour ~6 Ko d'un coup, ça correspond exactement au
+symptôme. Fix : `setContentLength()` + `send(200, type, "")` pour
+n'envoyer que les en-têtes, puis plusieurs `sendContent()` de 512
+octets avec `yield()`+`delay(1)` entre chacun — même principe déjà
+appliqué à la lecture réseau tout au long de ce module.
+
 ## 103.1.18 — beta uniquement — 2026-09-20 — force cache:no-store sur /tide_sites
 
 103.1.17 a corrigé le timing des réessais, mais un nouveau test a
