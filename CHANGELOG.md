@@ -14,6 +14,23 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.14 — beta uniquement — 2026-09-20 — double CONT_STACKSIZE + diagnostic d'en-têtes /tide_sites
+
+103.1.13 (fetch déplacé hors du callback webServer, donc plus de
+nesting) a quand même reproduit le même crash `Exception (5)`
+(addr2line → `cont_check`) qu'en 103.1.12 — preuve que le nesting
+n'était pas (seul) en cause. Signature classique d'une pile de
+continuation ESP8266 (~4 Ko par défaut) trop juste pour une poignée de
+main BearSSL. Ajoute `build_flags = -D CONT_STACKSIZE=8192` dans
+`platformio.ini` (vérifié applicable : les fichiers core concernés
+sont recompilés à chaque build PlatformIO, pas une lib précompilée).
+Séparément, le symptôme de base (`corps recu, 0/-1 octets`) persiste
+même sans nesting ni crash — ajoute un log diagnostique
+(Content-Length, Transfer-Encoding, Content-Encoding, Connection,
+`getSize()`, `connected()`) sur la réponse réellement reçue par CET
+ESP8266, pour trancher entre les hypothèses restantes au prochain test
+plutôt que deviner un correctif de plus à l'aveugle.
+
 ## 103.1.13 — beta uniquement — 2026-09-20 — deplace le fetch /tide_sites hors du callback webServer
 
 103.1.12 tentait de corriger un abandon prématuré de la lecture réseau
