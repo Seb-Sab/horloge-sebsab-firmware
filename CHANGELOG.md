@@ -14,6 +14,19 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.2 — beta uniquement — 2026-09-20 — clé api-maree.fr déplacée côté serveur
+
+Correction suite à 103.1.1 : la clé API api-maree.fr ne vit plus sur
+l'horloge (ni codée en dur, ni saisie sur le portail) -- elle se serait
+retrouvée extractible par n'importe qui depuis firmware.bin, distribué
+publiquement. Les requêtes passent maintenant par un proxy
+horloge-sebsab-fleet (api/tide.js, variable d'environnement Vercel
+TIDE_API_KEY, jamais exposée à aucun client), même principe que
+SUPABASE_SERVICE_ROLE_KEY déjà utilisée dans ce projet. Champ "Clé API"
+retiré du portail ; seul le choix du port reste à configurer. EEPROM_SIZE
+réduit (226-265 abandonnées, jamais réutilisées -- ce champ n'a jamais
+tourné sur une horloge réelle).
+
 ## 103.1.1 — beta uniquement — 2026-09-20 — module marées (préparation, sans le déclencheur physique)
 
 Nouvelle fonctionnalité en cours : affichage de la phase de marée sur la
