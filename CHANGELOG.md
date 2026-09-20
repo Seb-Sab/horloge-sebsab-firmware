@@ -14,6 +14,32 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.13 — beta uniquement — 2026-09-20 — deplace le fetch /tide_sites hors du callback webServer
+
+103.1.12 tentait de corriger un abandon prématuré de la lecture réseau
+mais provoquait en fait de vrais crashs sur l'horloge réelle, à chaque
+tentative d'ouverture du menu déroulant : `Exception (5)` (addr2line →
+`cont_check`) une fois, puis `Soft WDT reset` + `Exception (4)`
+(addr2line → `millis`) une autre fois — deux crashs distincts, tous
+deux à des adresses génériques du framework, pas dans le code du
+module. Cause réelle trouvée en comparant `handleTideSites()` aux
+trois autres fonctions HTTPS de ce fichier (`fetchTideExtrema()`,
+`checkForUpdate()`, `sendFleetCheckin()`) : c'était la SEULE à ouvrir
+une connexion BearSSL depuis l'intérieur d'un callback
+`webServer.on()` — les trois autres tournent toutes depuis
+`setup()`/`loop()`. Piège ESP8266 connu : la pile de continuation
+utilisée par les callbacks est petite (~4 Ko par défaut), et imbriquer
+une poignée de main BearSSL (gourmande en pile) par-dessus la pile
+déjà entamée par `webServer.handleClient()` peut la dépasser —
+silencieusement ou via ce type de crash. Fix : plus aucun appel réseau
+dans le handler HTTP. `fetchTideSitesList()` (nouvelle fonction, tourne
+depuis `setup()` une fois puis `loop()` toutes les 30s tant que non
+réussie) fait le travail réseau dans le même contexte sûr que les
+autres appels HTTPS du fichier, et remplit un cache (`tideSitesJson`).
+`handleTideSites()` relaie maintenant ce cache instantanément, sans
+ouvrir la moindre connexion — en bonus, le menu déroulant du portail
+se charge désormais sans latence réseau à l'ouverture.
+
 ## 103.1.12 — beta uniquement — 2026-09-20 — corrige l'abandon premature de la lecture /tide_sites
 
 103.1.11 déportait bien /sites sur Vercel (curl confirme un JSON propre,
