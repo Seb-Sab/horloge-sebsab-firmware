@@ -14,6 +14,15 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.3 — beta uniquement — 2026-09-20 — corrige la liste des ports vide
+
+Bug réel remonté par l'utilisateur (liste de ports vide dans le portail
+après OTA vers 103.1.2). Cause trouvée par calcul (pas de matériel
+disponible) : le tampon JSON de /tide_sites (8192 octets) était trop
+petit pour la vraie réponse de api-maree.fr/sites (133 ports, confirmée
+en direct), causant un echec NoMemory silencieux cote ESP8266. Tampon
+porte a 16384 octets.
+
 ## 103.1.2 — beta uniquement — 2026-09-20 — clé api-maree.fr déplacée côté serveur
 
 Correction suite à 103.1.1 : la clé API api-maree.fr ne vit plus sur
