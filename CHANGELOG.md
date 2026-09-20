@@ -14,6 +14,22 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.10 — beta uniquement — 2026-09-20 — détecte le désynchronisme site_id/site_name
+
+103.1.9 recevait bien le corps complet (received==total confirmé à
+chaque fois) mais ne trouvait qu'entre 78 et 91 ports sur 133 réels,
+de façon variable à chaque tentative. Cause : une corruption ponctuelle
+peut faire apparaître un guillemet au mauvais endroit, associant un
+site_id au site_name d'une AUTRE entrée plus loin dans le document --
+ce désynchronisme se propage ensuite à toute la suite (chaque paire
+mal alignée fausse la recherche de la suivante), bien au-delà de la
+seule entrée touchée au départ. site_name doit toujours suivre
+immédiatement site_id (séparés de ~15 caractères fixes) ; un écart
+plus grand est maintenant détecté et ce site_id est ignoré au lieu de
+laisser le décalage continuer. Entrées de longueur déraisonnable aussi
+rejetées (protection contre un JSON de sortie invalide). Revérifié
+contre les vraies données (133/133, zéro erreur) avant publication.
+
 ## 103.1.9 — beta uniquement — 2026-09-20 — rejette les réponses /tide_sites incomplètes + réessai auto
 
 Cause exacte trouvée via la console du navigateur (ERR_CONTENT_LENGTH_
