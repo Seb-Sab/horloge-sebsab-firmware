@@ -14,6 +14,18 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.4 — beta uniquement — 2026-09-20 — /tide_sites sans ArduinoJson (103.1.3 insuffisant)
+
+103.1.3 (tampon 16384) toujours insuffisant en pratique -- confirmé en
+direct sur une horloge réelle via moniteur série (crash "Unhandled C++
+exception: OOM" avec 8192, échec propre "NoMemory" avec 16384, aucune
+amélioration). Remplace complètement l'usage d'ArduinoJson pour
+/tide_sites par un parsing texte simple (recherche de sous-chaînes) --
+seul le corps brut (~13 Ko) est gardé en mémoire, jamais de document
+JSON parsé en entier. Logique validée hors-cible contre la vraie réponse
+api-maree.fr/sites (133 sites, accents/apostrophes inclus) avant
+publication : zéro erreur.
+
 ## 103.1.3 — beta uniquement — 2026-09-20 — corrige la liste des ports vide
 
 Bug réel remonté par l'utilisateur (liste de ports vide dans le portail
