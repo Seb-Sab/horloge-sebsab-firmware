@@ -14,6 +14,26 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.21 — beta uniquement — 2026-09-20 — vérifie/réserve la copie de tideSitesJson (échec silencieux du tas)
+
+Le diagnostic ajouté en 103.1.20 ("Tide sites: envoye X/Y octets") a
+révélé "0/0" à chaque requête, alors même que "corps recu 6057/6057"
+et "liste chargee" venaient de s'afficher juste avant, dans le même
+boot — donc pas une histoire de troncature réseau ou d'API de
+sérveur web, mais une donnée réellement vide côté ESP. Cause :
+`String::operator=` peut échouer silencieusement sur Arduino si le
+tas est trop fragmenté pour trouver un bloc contigu de la taille
+voulue (~6 Ko, non négligeable face aux ~28 Ko de tas libre typiques à
+ce stade du boot) — la String de destination reste alors vide, sans
+exception ni erreur. Rien ne vérifiait le résultat de
+`tideSitesJson = body;`, donc "liste chargee" s'affichait quand même,
+masquant l'échec. Fix : vérifie explicitement la longueur après la
+copie (si incorrecte, `tideSitesFetched` reste faux, `loop()`
+retentera dans 30s) ; réserve aussi `tideSitesJson` (6200 octets) le
+plus tôt possible dans `setup()`, avant toute autre allocation
+WiFi/EEPROM/webServer, pour réclamer le bloc contigu quand le tas est
+encore frais.
+
 ## 103.1.20 — beta uniquement — 2026-09-20 — écriture manuelle sur le client TCP brut pour /tide_sites
 
 103.1.19 (découpage en morceaux de 512 octets avec yield() entre
