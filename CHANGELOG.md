@@ -14,6 +14,17 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.6 — beta uniquement — 2026-09-20 — remplace https.getString() (renvoyait 0 octet)
+
+Cause trouvée grâce aux logs de 103.1.5 : "Tide sites: corps recu, 0
+octets" malgré un code HTTP 200 -- https.getString() échoue
+silencieusement sur cette requête précise (pas d'exception, juste une
+chaîne vide). Remplacée par une lecture manuelle du flux (stream->
+available()/read()), le même schéma déjà éprouvé et fiable dans
+downloadAndFlashOta() pour l'OTA elle-même -- pas une nouvelle méthode,
+celle déjà validée par des dizaines de téléchargements réels sur cette
+horloge.
+
 ## 103.1.5 — beta uniquement — 2026-09-20 — diagnostics /tide_sites
 
 103.1.4 toujours vide côté portail, cause inconnue (aucune des branches
