@@ -14,6 +14,20 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.9 — beta uniquement — 2026-09-20 — rejette les réponses /tide_sites incomplètes + réessai auto
+
+Cause exacte trouvée via la console du navigateur (ERR_CONTENT_LENGTH_
+MISMATCH) : la liaison réseau coupe parfois en cours de transfert (même
+phénomène que côté OTA toute cette session), et le code précédent
+servait quand même ce qu'il avait reçu -- résultat observé en direct :
+entrées visiblement corrompues (nom tronqué en plein milieu, ou du texte
+d'un autre endroit du document collé à la suite) ou liste simplement
+incomplète (arrêt avant la fin de l'alphabet). handleTideSites()
+compare désormais explicitement les octets reçus à la taille annoncée
+(Content-Length) et rejette (502 vide) toute réponse incomplète plutôt
+que de la servir telle quelle. Côté portail, la liste réessaie
+automatiquement jusqu'à 3 fois avant d'abandonner.
+
 ## 103.1.8 — beta uniquement — 2026-09-20 — récupère ~570 octets de RAM (cause précise identifiée)
 
 Mesure directe demandée par l'utilisateur : compilation isolée (git
