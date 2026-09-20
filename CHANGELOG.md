@@ -14,6 +14,23 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.8 — beta uniquement — 2026-09-20 — récupère ~570 octets de RAM (cause précise identifiée)
+
+Mesure directe demandée par l'utilisateur : compilation isolée (git
+worktree) de la version juste avant le module marées, comparaison
+binaire section par section. Trouvé : ce n'est PAS les variables
+globales du module marées (~250 octets seulement) mais l'usage de
+strftime() dans fetchTideExtrema() qui importait toute la table de
+formatage/locale de la libc (noms des mois/jours, plusieurs formats
+date/heure -- jamais utilisée ailleurs dans ce fichier, qui formate
+toujours les dates à la main), soit l'essentiel des ~1,3 Ko de RAM
+supplémentaires constatés. Remplacé par snprintf() (déjà le pattern
+utilisé partout ailleurs). Gain secondaire : DeserializationError::
+c_str() (table de messages ArduinoJson) remplacé par le code d'erreur
+numérique. RAM 48444->47872 (-572 octets). Toujours ~924 octets
+au-dessus de la version d'avant module marées (structures/chaînes
+propres au module, attendu et accepté).
+
 ## 103.1.7 — beta uniquement — 2026-09-20 — réduit les tampons BearSSL de l'OTA (crash OOM répété)
 
 Crash reproductible confirmé 4 fois d'affilée en direct via moniteur
