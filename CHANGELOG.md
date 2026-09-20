@@ -14,6 +14,20 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.11 — beta uniquement — 2026-09-20 — /tide_sites déporté sur Vercel
+
+Après six itérations de correctifs côté ESP8266 sur la récupération de
+/sites (tampon JSON, parsing texte, détection de coupure, résynchro-
+nisation) sans jamais obtenir une liste fiable à 100% -- corruption de
+contenu confirmée en direct même sur des transferts "complets" en
+octets, et même problème confirmé sur la liaison horloge->navigateur en
+local (ERR_CONTENT_LENGTH_MISMATCH) -- changement d'approche, proposé
+par l'utilisateur : la récupération + le nettoyage tournent maintenant
+côté Vercel (horloge-sebsab-fleet/api/tide_sites.js, connexion
+serveur-à-serveur fiable, cache 12h), l'horloge relaie une réponse déjà
+propre et compacte. Simplifie fortement handleTideSites() (plus de
+parsing/resynchronisation côté firmware).
+
 ## 103.1.10 — beta uniquement — 2026-09-20 — détecte le désynchronisme site_id/site_name
 
 103.1.9 recevait bien le corps complet (received==total confirmé à
