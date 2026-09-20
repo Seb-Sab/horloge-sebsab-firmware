@@ -14,6 +14,25 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.17 — beta uniquement — 2026-09-20 — élargit la fenêtre de réessai du portail pour /tide_sites
+
+103.1.16 a corrigé le fetch réseau lui-même (confirmé en direct, deux
+succès consécutifs) mais un nouveau symptôme est apparu côté portail :
+après avoir sélectionné un port et sauvegardé, le menu déroulant
+apparaissait vide au redémarrage ET la sélection n'était pas
+mémorisée. Cause : au démarrage, l'horloge enchaîne 4 appels HTTPS
+séquentiels dans `setup()` (vérification MAJ, check-in de flotte,
+horaires de marée, puis la liste des ports elle-même) avant que
+`/tide_sites` ne réponde autre chose que `503` — confirmé en direct,
+ce cycle peut prendre 10-20s. L'ancienne fenêtre de réessai côté
+portail (3 essais × 1,5s = 4,5s) abandonnait bien avant, laissant le
+`<select>` avec seulement l'option par défaut — et l'assignation de
+la sélection sauvegardée (qui a besoin d'une `<option>` déjà présente
+pour fonctionner) échouait donc silencieusement aussi, donnant
+l'illusion d'un port "non mémorisé" alors que l'EEPROM était
+vraisemblablement correcte. Passé à 20 essais × 1,5s (30s), avec un
+message "Chargement…" affiché pendant les tentatives.
+
 ## 103.1.16 — beta uniquement — 2026-09-20 — contourne HTTPClient::getStreamPtr() + agrandit le buffer BearSSL RX
 
 Le diagnostic ajouté en 103.1.14 a enfin montré le mécanisme précis
