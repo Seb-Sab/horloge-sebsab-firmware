@@ -14,6 +14,23 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.15 — beta uniquement — 2026-09-20 — URGENT : revert CONT_STACKSIZE (cassait le boot)
+
+103.1.14's `CONT_STACKSIZE=8192` empêchait l'horloge de démarrer :
+plus aucune ligne "Firmware version" au moniteur série, boucle de
+reset dès l'amorçage, confirmé en direct par l'utilisateur ("l'horloge
+ne redemarre pas"). `cont_t s_cont` (qui embarque le tableau
+`stack[CONT_STACKSIZE/4]`) est allouée sur la "SYS stack" du SDK
+ESP8266 — une zone de taille FIXE déjà partagée avec le SDK lui-même
+(WiFi, etc.), pas une pile extensible sans conséquence (voir le
+commentaire au-dessus de `app_entry_redefinable()` dans
+`core_esp8266_main.cpp`). Doubler à 8192 a dépassé ce budget avant
+même `setup()`. Retour au défaut (4096) pour débloquer l'horloge
+immédiatement. Le crash `cont_check`/Soft WDT du module marées reste
+non résolu, à traiter autrement (voir `project_tide_module` en
+mémoire) — ne pas ré-augmenter cette valeur sans d'abord vérifier la
+taille réelle de la SYS stack disponible sur ce SDK/core.
+
 ## 103.1.14 — beta uniquement — 2026-09-20 — double CONT_STACKSIZE + diagnostic d'en-têtes /tide_sites
 
 103.1.13 (fetch déplacé hors du callback webServer, donc plus de
