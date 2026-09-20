@@ -14,6 +14,23 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.12 — beta uniquement — 2026-09-20 — corrige l'abandon premature de la lecture /tide_sites
+
+103.1.11 déportait bien /sites sur Vercel (curl confirme un JSON propre,
+133 ports, Content-Length: 6057), mais le portail montrait un menu
+déroulant vide et le moniteur série affichait systématiquement
+"corps recu, 0/-1 octets" / "reponse incomplete, ignoree", à chaque
+tentative, y compris juste après un reset. Cause : `https.connected()`
+répond `false` dès le tout premier sondage de la boucle de lecture,
+avant même l'arrivée d'un seul octet du corps -- la boucle sortait
+donc immédiatement sans avoir rien lu, alors que le serveur envoyait
+bien les données. Ajoute une marge de 300ms avant de faire confiance à
+ce signal (au lieu de couper au premier sondage). Remplace aussi la
+validation stricte par comptage d'octets (Content-Length peu fiable
+sur cet ESP8266 tout au long de ce module, cf. 103.1.9/103.1.10) par
+une validation de forme du JSON (tableau bien formé) quand la taille
+annoncée est inconnue.
+
 ## 103.1.11 — beta uniquement — 2026-09-20 — /tide_sites déporté sur Vercel
 
 Après six itérations de correctifs côté ESP8266 sur la récupération de
