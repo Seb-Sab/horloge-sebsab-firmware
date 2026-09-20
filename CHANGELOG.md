@@ -14,6 +14,20 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.1 — beta uniquement — 2026-09-20 — module marées (préparation, sans le déclencheur physique)
+
+Nouvelle fonctionnalité en cours : affichage de la phase de marée sur la
+grille de LED (jauge par lignes bleu/jaune puis fondu vers l'heure de la
+prochaine pleine mer), destinée à être déclenchée par un double-tap
+physique (accéléromètre ADXL345, pas encore posé). Ce qui est déjà là :
+sélection du port suivi + clé API api-maree.fr depuis le portail (nouvelle
+section "Marées"), récupération périodique (12h) des horaires PM/BM,
+bouton "Aperçu marée" pour tester sans le capteur. Schéma JSON de
+api-maree.fr vérifié en direct (clé réelle, port Port-en-Bessin) avant
+publication -- correspond exactement à ce qui est codé. Toujours pas
+testé sur une horloge physique. Voir project_tide_module (mémoire projet)
+pour le détail complet des décisions de conception.
+
 ## 103.1.0 — STABLE — 2026-09-19 — promotion en stable (root + stable + beta)
 
 Promotion de la 103.0.1 (validée : 3 OTA réussies d'affilée via le
