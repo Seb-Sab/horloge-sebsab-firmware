@@ -14,6 +14,23 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.7 — beta uniquement — 2026-09-20 — réduit les tampons BearSSL de l'OTA (crash OOM répété)
+
+Crash reproductible confirmé 4 fois d'affilée en direct via moniteur
+série (dump de pile complet, décodé à l'addr2line) : "Unhandled C++
+exception: OOM" dans BearSSL::WiFiClientSecureCtx::WiFiClientSecureCtx()/
+_connectSSL(), y compris juste après un reset physique (tas mémoire
+garanti neuf) -- donc pas une fragmentation accumulée. Cause probable :
+le module marées (103.1.1-103.1.6) a fait grossir la RAM statique
+d'environ 1,6 Ko (57,3%->59,3%), suffisant pour faire basculer
+l'allocation des tampons BearSSL de l'OTA (4096/1024, déjà limite) du
+côté "échoue systématiquement". Réduit à 2048/512 dans
+downloadAndFlashOta(). **Flash USB recommandé plutôt qu'OTA** pour cette
+version précise : l'horloge encore en 103.1.5/103.1.6 utilise l'ANCIEN
+code (gros tampons) pour tenter de télécharger cette correction --
+situation potentiellement bloquante en boucle si le crash est
+suffisamment systématique.
+
 ## 103.1.6 — beta uniquement — 2026-09-20 — remplace https.getString() (renvoyait 0 octet)
 
 Cause trouvée grâce aux logs de 103.1.5 : "Tide sites: corps recu, 0
