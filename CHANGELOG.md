@@ -14,6 +14,27 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 104.0.0 — stable (+ beta) — 2026-09-21 — première stable du module marées
+
+Promotion en stable du lot validé en beta de 103.1.23 à 103.1.55 (voir
+les entrées 103.1.53 à 103.1.55 ci-dessous pour le détail). Publiée sur
+les trois emplacements (racine, `stable/`, `beta/`) pour qu'aucune
+horloge, quel que soit son canal, ne reste bloquée derrière.
+
+Numéro de version : MAJOR avancé (103 → 104) à la demande explicite de
+l'utilisateur pour marquer l'intégration du mode marée comme version
+majeure, au lieu du 103.2.0 que donnait la convention MINOR+1 — la
+comparaison est en tuple, donc toute horloge en 103.x la voit bien comme
+plus récente. Le mécanisme OTA a été revalidé de bout en bout avant cette
+promotion (103.1.55 installée sans reboucler, grâce au correctif de
+`Update.write()` de 103.1.54).
+
+Contenu : affichage marée (jauge LED animée, heure de la prochaine
+marée pertinente à la direction, couleurs bleu/jaune, fondus), déclenchement
+physique par double-tap (ADXL345, détecté à l'exécution : une horloge sans
+le capteur fonctionne normalement, seule la section "Marées" du portail est
+alors masquée), et remontée `adxl_present`/`tide_site` au check-in de flotte.
+
 ## 103.1.55 — beta uniquement — 2026-09-21 — OTA de test (aucun changement fonctionnel)
 
 Binaire identique a 103.1.54, seul le numero de version change. Sert a
