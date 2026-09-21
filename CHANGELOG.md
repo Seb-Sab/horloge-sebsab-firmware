@@ -14,6 +14,14 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 103.1.55 — beta uniquement — 2026-09-21 — OTA de test (aucun changement fonctionnel)
+
+Binaire identique a 103.1.54, seul le numero de version change. Sert a
+verifier que le correctif OTA de 103.1.54 (verification de la valeur de
+retour de `Update.write()`) fonctionne reellement de bout en bout :
+une horloge deja sur 103.1.54 doit telecharger, appliquer et redemarrer
+sur 103.1.55 sans reboucler sur un nouveau telechargement.
+
 ## 103.1.54 — beta uniquement — 2026-09-21 — verifie enfin la valeur de retour de Update.write()
 
 Symptome rapporte en direct : une mise a jour OTA se telechargeait
