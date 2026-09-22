@@ -14,6 +14,17 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 104.0.1 — beta uniquement — 2026-09-22 — fix couleur jauge marée descendante
+
+Corrige un bug signalé par l'utilisateur dans `showTideDisplay()` : en
+marée descendante, les lignes qui grandissaient au fil du temps étaient
+BLEUES au lieu de JAUNES (le comportement voulu, documenté en commentaire
+depuis 103.1.30, n'était pas ce que le code produisait réellement).
+L'eau (bleu) occupe maintenant toujours les lignes du bas de la jauge,
+montante ou descendante ; seul l'ordre de révélation change selon la
+direction. Publiée en beta uniquement, en attente de confirmation
+visuelle sur une horloge réelle avant promotion en stable.
+
 ## 104.0.0 — stable (+ beta) — 2026-09-21 — première stable du module marées
 
 Promotion en stable du lot validé en beta de 103.1.23 à 103.1.55 (voir
