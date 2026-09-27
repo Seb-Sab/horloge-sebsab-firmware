@@ -14,6 +14,24 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 104.0.4 — beta uniquement — 2026-09-27 — calibrage LDR résistant + portail (transitions/WiFi)
+
+Corrige un bug signalé par l'utilisateur : le calibrage LDR initial (24h)
+ne survivait pas à un redémarrage (plantage Hardware Watchdog observé sur
+le dashboard, coupure, OTA) — une horloge neuve qui redémarrait plus
+souvent que toutes les 24h ne finissait jamais son calibrage. La
+progression (durée écoulée + bornes partielles) est désormais persistée
+en EEPROM toutes les 10 min et reprise au démarrage. Vérifié sur
+matériel réel (chip f59d5a) : reprise confirmée après un reset à 50 min
+de calibrage écoulées — **mais pas encore vérifié via une vraie mise à
+jour OTA** (seulement testé par flash USB direct), d'où la publication
+en beta uniquement pour l'instant.
+
+Contient aussi deux demandes du portail : le choix de la transition
+d'affichage passe du menu "Paramètres avancés" au menu par défaut ; la
+liste des réseaux WiFi devient une liste déroulante triée par signal
+(barres de signal avant le nom).
+
 ## 104.0.1 — beta uniquement — 2026-09-22 — fix couleur jauge marée descendante
 
 Corrige un bug signalé par l'utilisateur dans `showTideDisplay()` : en
