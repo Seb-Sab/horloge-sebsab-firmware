@@ -14,6 +14,17 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 104.0.4 — stable (+ beta) — 2026-10-01 — promotion après validation OTA réelle
+
+Promue en stable sur les trois emplacements (racine, `stable/`, `beta/`
+— aucune horloge, quel que soit son canal, ne reste bloquée derrière).
+Validation OTA réelle confirmée par l'utilisateur sur une horloge beta :
+mise à jour effectuée par OTA (pas seulement par flash USB), horloge et
+dashboard tous deux sains après coup — condition posée lors de la
+publication beta initiale (voir l'entrée ci-dessous) pour s'assurer que
+le changement d'EEPROM (reprise du calibrage LDR) survit bien à une
+vraie mise à jour, pas seulement à un flash neuf.
+
 ## 104.0.4 — beta uniquement — 2026-09-27 — calibrage LDR résistant + portail (transitions/WiFi)
 
 Corrige un bug signalé par l'utilisateur : le calibrage LDR initial (24h)
