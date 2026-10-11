@@ -14,6 +14,26 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.0.1 — beta uniquement — 2026-10-11 — support italien (grille dédiée) + seuil mode nuit resserré
+
+Ajoute une troisième langue (italien) avec sa propre grille de lettres
+11x11 (`include/lang_it.h`, `renderClockFrameIT()` dans `main.cpp`) — grille
+conçue pour éviter la case morte du capteur LDR et tout contact visuel
+involontaire entre mots indépendants (vérifié par simulation logicielle
+exhaustive, pas sur horloge réelle : aucune horloge italienne physique
+n'existe encore). Ajoute aussi l'animation d'anniversaire italienne
+("BUON COMPLEANNO"). Resserre indépendamment le seuil d'entrée en mode
+nuit de 10% à 5% de la plage calibrée (demande utilisateur).
+
+**Risque connu accepté par l'utilisateur** : le portail propose désormais
+"Italiano" comme langue sélectionnable sur TOUTES les horloges de ce
+canal, y compris les horloges FR/EN existantes — une horloge FR/EN dont
+le propriétaire sélectionnerait l'italien afficherait des lettres
+incohérentes (sa grille physique ne correspond pas aux lettres
+italiennes). Publié tel quel à la demande explicite de l'utilisateur,
+sans flash USB préalable (ni pour l'italien, faute de matériel, ni pour
+le changement de mode nuit).
+
 ## 104.0.4 — stable (+ beta) — 2026-10-01 — promotion après validation OTA réelle
 
 Promue en stable sur les trois emplacements (racine, `stable/`, `beta/`
