@@ -14,6 +14,14 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.0.7 — beta uniquement — 2026-10-17 — portail : l'aperçu live de la couleur LED reste visible
+
+Correctif de 105.0.6 : l'aperçu couleur ne durait que ~1 s car la boucle
+principale redessinait l'heure chaque seconde avec la couleur enregistrée.
+L'aperçu reste maintenant actif tant qu'on bouge les curseurs, puis la
+couleur enregistrée est restaurée 6 s après le dernier mouvement. Aucune
+écriture EEPROM.
+
 ## 105.0.6 — beta uniquement — 2026-10-17 — portail : garde-fou couleur LED + aperçu live
 
 Demande utilisateur : le portail empêche désormais d'enregistrer une
