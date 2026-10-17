@@ -14,6 +14,15 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.0.3 — beta uniquement — 2026-10-17 — corrige un conflit plaque physique/logiciel (ligne 7 col 10)
+
+105.0.2 avait réutilisé une case de la grille italienne pour le "O" de
+"UNO" en la faisant passer de X à O — mais l'utilisateur avait déjà gravé
+un X à cet endroit sur sa plaque physique réelle (choix fait explicitement
+plus tôt pour éviter deux E consécutifs). Reverti : la case reste X, le O
+de "UNO" vient maintenant d'une lettre différente, déjà existante
+ailleurs dans la grille (le O de "SONO").
+
 ## 105.0.2 — beta uniquement — 2026-10-17 — fix affichage du décalage horaire italien
 
 Corrige un bug signalé par l'utilisateur sur une horloge italienne réelle
