@@ -14,6 +14,12 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.0.8 — beta uniquement — 2026-10-17 — italien : « SONO LE » / « È » / « L' » seulement à l'heure pleine
+
+Demande utilisateur : même comportement que « IL EST » en français. Le
+préfixe n'est allumé que pour les minutes 0-4 ; ensuite seul le mot de
+l'heure (et les minutes) s'affiche. Aucun changement d'EEPROM.
+
 ## 105.0.7 — beta uniquement — 2026-10-17 — portail : l'aperçu live de la couleur LED reste visible
 
 Correctif de 105.0.6 : l'aperçu couleur ne durait que ~1 s car la boucle
