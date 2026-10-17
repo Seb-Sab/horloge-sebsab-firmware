@@ -14,6 +14,17 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.0.2 — beta uniquement — 2026-10-17 — fix affichage du décalage horaire italien
+
+Corrige un bug signalé par l'utilisateur sur une horloge italienne réelle
+(105.0.1) : au démarrage, les lettres G-M-T s'affichaient mais jamais le
+décalage horaire (ex. "plus un"). `arrayTMZ_IT` était resté au stub à
+zéro — et même rempli, l'ancien mécanisme d'affichage (segments de pixels
+contigus) ne peut pas représenter le mot "PIU", qui est en diagonale sur
+la grille italienne. Remplacé par un chemin dédié (mot/grille, comme pour
+l'heure). Ajoute aussi "UNO" et "DODICI" à la grille (absents jusqu'ici,
+nécessaires pour les décalages ±1 et ±12).
+
 ## 105.0.1 — beta uniquement — 2026-10-11 — support italien (grille dédiée) + seuil mode nuit resserré
 
 Ajoute une troisième langue (italien) avec sa propre grille de lettres
