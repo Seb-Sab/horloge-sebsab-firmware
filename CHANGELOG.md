@@ -14,6 +14,19 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.0.4 — beta uniquement — 2026-10-17 — ordre de lecture VENTI/CINQUE + fuseau horaire (PIU 100%)
+
+Corrige un bug signalé par l'utilisateur : "venticinque" (25) se lisait à
+l'envers (CINQUE avant VENTI en lecture haut-bas). VENTI et MEZZA échangés
+entre les lignes 8 et 10. En creusant plus largement, le même problème
+affectait l'affichage du fuseau horaire au démarrage (UNO, DODICI, et plus
+généralement PIU/MENO + nombre) — généralisé et corrigé : PIU (décalage
+positif, le seul cas réel pour l'Italie) est désormais correct à 100%
+pour les 12 décalages. MENO (négatif, jamais produit par une config
+correcte) reste correct pour 5/12 — limite acceptée par l'utilisateur,
+faute de lettres S/V disponibles ailleurs dans la grille sans modifier
+la plaque physique.
+
 ## 105.0.3 — beta uniquement — 2026-10-17 — corrige un conflit plaque physique/logiciel (ligne 7 col 10)
 
 105.0.2 avait réutilisé une case de la grille italienne pour le "O" de
