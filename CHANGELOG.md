@@ -14,6 +14,12 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.0.5 — beta uniquement — 2026-10-17 — filler cosmétique ligne 8 col 5 (L -> Y)
+
+Changement purement esthétique demandé par l'utilisateur : trop de "L" sur
+la grille italienne. Cette case (séparateur visuel entre MENO et VENTI)
+n'est référencée par aucun mot et n'est jamais allumée.
+
 ## 105.0.4 — beta uniquement — 2026-10-17 — ordre de lecture VENTI/CINQUE + fuseau horaire (PIU 100%)
 
 Corrige un bug signalé par l'utilisateur : "venticinque" (25) se lisait à
