@@ -14,6 +14,16 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.0.6 — beta uniquement — 2026-10-17 — portail : garde-fou couleur LED + aperçu live
+
+Demande utilisateur : le portail empêche désormais d'enregistrer une
+couleur LED R=G=B=W=0 (l'horloge n'afficherait plus jamais rien), avec
+message d'erreur côté navigateur et côté horloge. Ajoute aussi un aperçu
+en direct sur la vraie horloge pendant qu'on bouge les curseurs de
+couleur (nouvelle route `/preview_color`, même principe que l'aperçu des
+transitions déjà existant) — aucune écriture EEPROM tant que
+"Enregistrer" n'est pas cliqué.
+
 ## 105.0.5 — beta uniquement — 2026-10-17 — filler cosmétique ligne 8 col 5 (L -> Y)
 
 Changement purement esthétique demandé par l'utilisateur : trop de "L" sur
