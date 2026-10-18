@@ -14,6 +14,15 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.1.0 — STABLE — 2026-10-18 — racine + stable/ + beta/
+
+Même code que 105.0.10, renuméroté 105.1.0 à la demande de l'utilisateur
+pour respecter la convention du projet (une version stable prend un numéro
+x.y.0 ; les patchs servent aux itérations beta). 105.0.10 a été publiée en
+stable quelques minutes avant d'être remplacée par celle-ci : les horloges
+qui l'avaient déjà reçue refont une mise à jour vers 105.1.0, sans
+changement de comportement ni d'EEPROM.
+
 ## 105.0.10 — promu en STABLE — 2026-10-18 — racine + stable/ + beta/
 
 Promotion beta -> stable sur demande explicite de l'utilisateur, sans
