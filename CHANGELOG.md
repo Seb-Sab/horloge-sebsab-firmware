@@ -14,6 +14,15 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.0.10 — beta uniquement — 2026-10-18 — check-in renvoyé après application d'une config distante
+
+Le check-in de boot envoyait l'état d'AVANT l'application de la config
+reçue en réponse (valeurs LDR, recalibrage, transition, canal) : le
+dashboard affichait donc d'anciennes valeurs jusqu'au check-in suivant
+(~3 h). Si la réponse applique un changement, un seul check-in
+supplémentaire est maintenant renvoyé (client TLS libéré avant, pas de
+boucle). Aucun changement d'EEPROM.
+
 ## 105.0.9 — beta uniquement — 2026-10-18 — check-in fleet renvoyé après détection du capteur ADXL
 
 Le check-in de boot partait avant adxlInit() et rapportait toujours
