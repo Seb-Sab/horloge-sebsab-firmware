@@ -14,6 +14,14 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.0.10 — promu en STABLE — 2026-10-18 — racine + stable/ + beta/
+
+Promotion beta -> stable sur demande explicite de l'utilisateur, sans
+changement de code. Regroupe depuis 104.0.4 : support italien complet
+(grille dédiée, PIU/MENO, SONO LE seulement à l'heure pleine), portail
+avec garde-fou couleur LED 0 + aperçu live persistant, check-in fleet
+renvoyé après détection ADXL et après application d'une config distante.
+
 ## 105.0.10 — beta uniquement — 2026-10-18 — check-in renvoyé après application d'une config distante
 
 Le check-in de boot envoyait l'état d'AVANT l'application de la config
