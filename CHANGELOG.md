@@ -14,6 +14,14 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.0.9 — beta uniquement — 2026-10-18 — check-in fleet renvoyé après détection du capteur ADXL
+
+Le check-in de boot partait avant adxlInit() et rapportait toujours
+adxl_present=0 : le dashboard affichait « capteur non détecté » jusqu'au
+check-in périodique suivant (~3 h). Un check-in supplémentaire est
+maintenant envoyé juste après adxlInit(), seulement si le capteur est
+détecté. Aucun changement d'EEPROM.
+
 ## 105.0.8 — beta uniquement — 2026-10-17 — italien : « SONO LE » / « È » / « L' » seulement à l'heure pleine
 
 Demande utilisateur : même comportement que « IL EST » en français. Le
