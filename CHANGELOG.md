@@ -14,6 +14,15 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.1.1 — beta — 2026-11-07 — beta/ uniquement
+
+Trois comportements de nuit reglables depuis le portail (section Luminosite,
+avec le calibrage LDR) : 0 = extinction auto (historique, defaut), 1 = jamais
+eteinte avec luminosite mini 15 %, 2 = mode nuit ignore. Nouvel octet EEPROM
+279 (EEPROM_SIZE 279 -> 280), rapporte au check-in fleet (night_setting,
+affiche dans le dashboard, migration_012). Une horloge existante garde
+l'extinction auto tant que rien n'est choisi.
+
 ## 105.1.0 — STABLE — 2026-10-18 — racine + stable/ + beta/
 
 Même code que 105.0.10, renuméroté 105.1.0 à la demande de l'utilisateur
