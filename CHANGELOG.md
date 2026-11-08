@@ -14,6 +14,21 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.1.3 — beta — 2026-11-08 — beta/ uniquement
+
+Aucun changement fonctionnel par rapport à 105.1.2, numéro seul : cible d'un
+vrai test OTA depuis une horloge flashée en 105.1.2 par USB (f59d5a).
+
+## 105.1.2 — (non publiée) — 2026-11-08 — flash USB uniquement
+
+Robustesse OTA : la pile BearSSL de 6,2 Ko est réservée une seule fois pour
+tout le téléchargement. Avant, chaque reprise la réallouait et échouait faute
+de bloc mémoire contigu (maxblk 5768 < 6200), d'où les "abandon après 40
+reprises" à 30-92 Ko sur 560 Ko. Abandon désormais seulement après 12 essais
+consécutifs sans progression (plafond 200 reprises / 25 min), attente
+croissante 1 à 15 s, diagnostic cx/st/np/code/minblk/t au dashboard.
+Attention : une horloge en <= 105.1.1 télécharge avec l'ancien code.
+
 ## 105.1.1 — beta — 2026-11-07 — beta/ uniquement
 
 Trois comportements de nuit reglables depuis le portail (section Luminosite,
