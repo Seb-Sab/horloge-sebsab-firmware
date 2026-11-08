@@ -14,6 +14,15 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.1.8 — beta — 2026-11-08 — beta/ uniquement, COMPRESSÉ (gzip)
+
+Même code que 105.1.7. `beta/firmware.bin` contient cette fois une image
+gzip -9 (390 Ko au lieu de 567 Ko) : l'Updater et le bootloader eboot du core
+ESP8266 3.x reconnaissent le format et décompressent au démarrage, y compris
+avec l'ancien code de téléchargement. Test : une horloge remise en 105.1.0
+(ancien téléchargeur, comme toute la flotte stable) arrive-t-elle à récupérer
+le nouveau firmware ?
+
 ## 105.1.7 — beta — 2026-11-08 — beta/ uniquement
 
 Même code que 105.1.6, numéro seul : cible du test OTA.
