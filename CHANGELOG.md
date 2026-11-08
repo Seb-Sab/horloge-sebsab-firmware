@@ -14,6 +14,18 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.1.5 — beta — 2026-11-08 — beta/ uniquement
+
+Même code que 105.1.4, numéro seul : cible du test OTA suivant.
+
+## 105.1.4 — (non publiée) — 2026-11-08 — flash USB uniquement
+
+Le test 105.1.2 -> 105.1.3 a échoué à 32 Ko : un blocage, puis 12 reprises
+recevant bien 206 mais avec la session TLS déjà fermée juste après les
+en-têtes. Ajout d'un diagnostic par tentative (code d'erreur BearSSL sur le
+port série et ssl= au dashboard) et reprise immédiate quand la connexion est
+fermée au lieu d'attendre 12 s.
+
 ## 105.1.3 — beta — 2026-11-08 — beta/ uniquement
 
 Aucun changement fonctionnel par rapport à 105.1.2, numéro seul : cible d'un
