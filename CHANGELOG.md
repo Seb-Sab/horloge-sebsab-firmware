@@ -14,6 +14,20 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.1.7 — beta — 2026-11-08 — beta/ uniquement
+
+Même code que 105.1.6, numéro seul : cible du test OTA.
+
+## 105.1.6 — (non publiée) — 2026-11-08 — flash USB uniquement
+
+Cause racine des blocages OTA trouvée au moniteur série : erreur BearSSL 6
+(BR_ERR_TOO_LARGE). raw.githubusercontent.com n'accepte pas l'extension TLS
+MFLN et envoie des enregistrements de 16 Ko, alors que le tampon de réception
+de l'horloge fait 2 Ko. Le téléchargement se fait désormais par petites
+requêtes Range de 1536 octets sur une seule connexion keep-alive (enregistrements
+mesurés <= 1560 octets), repli automatique à 768/384/256 octets, ETag vérifié
+à chaque morceau. Jauge OTA en luminosité réduite.
+
 ## 105.1.5 — beta — 2026-11-08 — beta/ uniquement
 
 Même code que 105.1.4, numéro seul : cible du test OTA suivant.
