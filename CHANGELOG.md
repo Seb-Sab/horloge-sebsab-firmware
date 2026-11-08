@@ -14,6 +14,20 @@ Aucune version antérieure à v68 n'a de canal — le mécanisme stable/beta
 n'existe pas avant (une seule diffusion possible, implicitement
 "stable"). Pas d'historique rétroactif pour ces versions-là.
 
+## 105.2.0 — STABLE — 2026-11-08 — racine + stable/ + beta/, COMPRESSÉ (gzip)
+
+Promotion beta -> stable sur go explicite de l'utilisateur. Même code que
+105.1.8, renuméroté x.y.0 (convention stable), publié en image gzip -9
+(390 Ko). Validé par un vrai OTA sur les 3 horloges beta, toutes restées en
+ancien code 105.1.0, sur deux réseaux WiFi différents : 105.1.8 installée et
+fonctionnelle sur les trois. Regroupe depuis 105.1.0 :
+- téléchargement OTA réécrit (cause racine des abandons : enregistrements
+  TLS de 16 Ko envoyés par GitHub contre un tampon de 2 Ko) : petites
+  requêtes Range de 1536 octets sur une connexion keep-alive, ETag vérifié,
+  pile BearSSL réservée une seule fois, jauge OTA en luminosité réduite ;
+- 3 comportements de nuit réglables depuis le portail (extinction auto /
+  jamais éteinte, luminosité mini 15 % / mode nuit ignoré), octet EEPROM 279.
+
 ## 105.1.8 — beta — 2026-11-08 — beta/ uniquement, COMPRESSÉ (gzip)
 
 Même code que 105.1.7. `beta/firmware.bin` contient cette fois une image
